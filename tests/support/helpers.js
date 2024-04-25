@@ -1,4 +1,3 @@
-import { expect } from "@playwright/test";
 const { faker } = require("@faker-js/faker");
 
 const userBody = {
@@ -8,12 +7,20 @@ const userBody = {
   administrador: "true",
 };
 
-const createUser = async (request) => {
-  const response = await request.post("/usuarios", { data: userBody });
-  expect(response.status()).toBe(201);
-};
+const postUser = async (request, body) => {
+  const response = await request.post("/usuarios", { data: body });
+  const responseJson = await response.json();
+  return { response, responseJson };
+}
+
+const getUser = async (request, id) => {
+  const response = await request.get(`/usuarios/${id}`);
+  const responseJson = await response.json();
+  return { response, responseJson };
+}
 
 module.exports = {
   userBody,
-  createUser,
-};
+  postUser,
+  getUser
+}
