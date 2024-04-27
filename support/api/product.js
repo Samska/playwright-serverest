@@ -5,7 +5,7 @@ const productBody = {
   nome: faker.commerce.productName(),
   preco: faker.number.int(),
   descricao: faker.commerce.productDescription(),
-  quantidade: faker.number.int(100),
+  quantidade: faker.number.int({min: 10}),
 };
 
 const productSchema = Joi.object({
