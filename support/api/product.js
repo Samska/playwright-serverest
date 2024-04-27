@@ -1,4 +1,5 @@
 const { faker } = require("@faker-js/faker");
+const Joi = require('joi');
 
 const productBody = {
   nome: faker.commerce.productName(),
@@ -6,6 +7,14 @@ const productBody = {
   descricao: faker.commerce.productDescription(),
   quantidade: faker.number.int(100),
 };
+
+const productSchema = Joi.object({
+  nome: Joi.string().required(),
+  preco: Joi.number().required(),
+  descricao: Joi.string().required(),
+  quantidade: Joi.number().required(),
+  _id: Joi.string().required()
+});
 
 const createProduct = async (request, productBody, authorization) => {
   const response = await request.post("/produtos", {
@@ -44,5 +53,6 @@ module.exports = {
   createProduct,
   getProductById,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  productSchema
 };

@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { userBody, postUser, getUser } = require("../../support/api/user");
+const { userBody, postUser, getUser, userSchema } = require("../../support/api/user");
 
 test.describe("user route", () => {
     test("get all users", async ({ request }) => {
@@ -21,24 +21,20 @@ test.describe("user route", () => {
 
     test("email already exists", async ({ request }) => {        
         await postUser(request, userBody);
-
         const { response, responseJson } = await postUser(request, userBody);
 
         expect(response.status()).toBe(400);
         expect(responseJson).toHaveProperty("message", "Este email já está sendo usado");
     });
 
-    test("get user by id", async ({ request }) => {
+    test("get user by id and validate schema", async ({ request }) => {
         const { responseJson } = await postUser(request, userBody);
-
         const { response: responseGet, responseJson: responseGetJson } = await getUser(request, responseJson._id);
 
         expect(responseGet.status()).toBe(200);
-        expect(responseGetJson).toHaveProperty("nome", userBody.nome);
-        expect(responseGetJson).toHaveProperty("email", userBody.email);
-        expect(responseGetJson).toHaveProperty("password", userBody.password);
-        expect(responseGetJson).toHaveProperty("administrador", userBody.administrador);
-        expect(responseGetJson).toHaveProperty("_id", responseJson._id);
+
+        const { error } = userSchema.validate(responseGetJson);
+        expect(error).toBeUndefined();
     });
 
     test("get user by id not found", async ({ request }) => {
@@ -62,7 +58,6 @@ test.describe("user route", () => {
 
     test("delete user by id with success", async ({ request }) => {
         const { responseJson } = await postUser(request, userBody);
-
         const responseDelete = await request.delete(`/usuarios/${responseJson._id}`);
         const responseDeleteJson = await responseDelete.json();
 
