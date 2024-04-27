@@ -8,11 +8,8 @@ test.describe("product route", () => {
 
   test.beforeAll(async ({ request }) => {
     await postUser(request, userBody);
-    authToken = await performLogin(
-      request,
-      userBody.email,
-      userBody.password
-    );
+    const { response, responseJson, authorization } = await performLogin(request, userBody.email, userBody.password);
+    authToken = authorization;
   });
 
   test("get all products", async ({ request }) => {

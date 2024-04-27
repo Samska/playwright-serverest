@@ -3,7 +3,7 @@ const performLogin = async (request, email, password) => {
     data: { email, password },
   });
   const responseJson = await response.json();
-  return responseJson.authorization;
+  return { response, responseJson, authorization: responseJson.authorization };
 };
 
 module.exports = {
