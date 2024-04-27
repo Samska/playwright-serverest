@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { userBody, postUser } = require("../support/helpers");
+const { userBody, postUser } = require("../../support/api/user");
 
 test.describe("login route", () => {
   test("login with valid credentials", async ({ request }) => {

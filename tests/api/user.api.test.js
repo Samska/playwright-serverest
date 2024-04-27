@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { userBody, postUser, getUser } = require("../support/helpers");
+const { userBody, postUser, getUser } = require("../../support/api/user");
 
 test.describe("user route", () => {
     test("get all users", async ({ request }) => {

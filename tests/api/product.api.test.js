@@ -1,10 +1,7 @@
 const { test, expect } = require("@playwright/test");
-const {
-  userBody,
-  postUser,
-  productBody,
-  performLogin,
-} = require("../support/helpers");
+const { userBody, postUser } = require("../../support/api/user");
+const { productBody } = require("../../support/api/product");
+const { performLogin } = require("../../support/api/helpers");
 
 test.describe("product route", () => {
   let authToken;
