@@ -30,12 +30,3 @@ jobs:
         with:
           name: allure-results
           path: allure-results/
-
-      - name: Allure Report to GH Pages
-        uses: simple-elf/allure-report-action@v2
-        if: always()
-        id: allure-report
-        with:
-          allure_results: allure-results
-          gh_pages: github-pages
-          allure_report: allure-report
