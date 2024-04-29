@@ -1,4 +1,4 @@
-const { test, expect } = require("@playwright/test");
+const { test } = require("@playwright/test");
 const { userData, createUser } = require("../../support/e2e/create-user");
 
 test.describe("Create user tests", () => {
