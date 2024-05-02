@@ -4,7 +4,7 @@
 
 # Playwright Serverest
 
-This is a sample project using Playwright for E2E (In Progress) and API testing in the application https://serverest.dev and https://front.serverest.dev.
+This is a sample project using Playwright for E2E and API testing in the application https://serverest.dev and https://front.serverest.dev.
 
 ## Pre-requisites
 
@@ -47,12 +47,12 @@ playwright-serverest/
  ├── support/                                       # Helper functions, fixtures and page objects                               
  │    ├── api/                                      # API Helpers
  │        ├── *.js                     
- │    ├── e2e/                                      # E2E Helpers (In Progress)
+ │    ├── e2e/                                      # E2E Helpers
  │        ├── *.js
  ├── tests/                                         # Tests folder                               
  │    ├── api/                                      # API Tests
  │        ├── *.api.test.js                     
- │    ├── e2e/                                      # E2E Tests (In Progress)
+ │    ├── e2e/                                      # E2E Tests
  │        ├── *.e2e.test.js
  ├── .gitignore                                     # Untracked folder and files
  ├── playwright.config.js                           # The main configuration file for playwright, set behaviors, timeout and other props here
